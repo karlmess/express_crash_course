@@ -9,8 +9,13 @@ const logger = (req, res, next) => {
   next();
 };
 
-// Initializes middleware function
+// Initialize Middleware
+// Example
 app.use(logger);
+// Body Parser
+app.use(express.json());
+// Handler for URL encoded data
+app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/members", require("./routes/api/members"));
 
