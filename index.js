@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const exphbs = require("express-handlebars");
+const members = require("./data/members");
 
 const app = express();
 
@@ -20,6 +21,10 @@ app.use(express.urlencoded({ extended: false }));
 // Handlebars Middleware
 app.engine("handlebars", exphbs.engine());
 app.set("view engine", "handlebars");
+
+app.get("/", (req, res) =>
+  res.render("index", { title: "Member App", members })
+);
 
 app.use("/api/members", require("./routes/api/members"));
 
