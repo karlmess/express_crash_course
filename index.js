@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const exphbs = require("express-handlebars");
 
 const app = express();
 
@@ -16,6 +17,9 @@ app.use(logger);
 app.use(express.json());
 // Handler for URL encoded data
 app.use(express.urlencoded({ extended: false }));
+// Handlebars Middleware
+app.engine("handlebars", exphbs.engine());
+app.set("view engine", "handlebars");
 
 app.use("/api/members", require("./routes/api/members"));
 
